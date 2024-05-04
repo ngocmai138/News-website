@@ -1,0 +1,9 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<section id="content" class="s-content">
+@await Component.InvokeAsync("FeaturedNews")
+
+@await Component.InvokeAsync("NewsList")
+</section> 

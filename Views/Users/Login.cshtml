@@ -1,0 +1,52 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_Articles";
+}
+<section id="content" class="s-content">
+    <div class="row entry-wrap">
+        <div class="column lg-12">
+
+            <article class="entry format-standard">
+                <header class="entry__header entry__header--narrow">
+
+                    <h1 class="entry__title">
+                        Log in
+                    </h1>
+
+                </header>
+                <div class="content-primary">
+
+                    <form asp-action="Login" asp-controller="Users"  id="cForm" class="entry__form" method="post" autocomplete="off">
+                        <fieldset class="row">
+
+                            <div class="column lg-6 tab-12 form-field">
+                                <input name="name" id="cName" class="u-fullwidth" placeholder="Your Name" value="" type="text">
+                            </div>
+
+                            <div class="column lg-6 tab-12 form-field">
+                                <input name="password" id="cEmail" class="u-fullwidth" placeholder="Your Password" value="" type="password">
+                            </div>
+
+                            <div class="column lg-12">
+                                <input name="submit" id="submit" class="btn btn--primary btn-wide btn--large u-fullwidth" value="Login" type="submit">
+                            </div>
+
+                        </fieldset>
+                    </form> <!-- end form -->
+
+
+
+                </div> <!-- end content-primary -->
+
+            </article> <!-- end entry -->
+
+
+        </div>
+    </div> <!-- end entry-wrap -->
+</section>
+
+
+
+

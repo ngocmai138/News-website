@@ -1,0 +1,57 @@
+﻿@model IEnumerable<News.Models.Article>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!--  masonry -->
+<div id="bricks" class="bricks">
+
+    <div class="masonry">
+
+        <div class="bricks-wrapper" data-animate-block>
+
+            <div class="grid-sizer"></div>
+            @foreach(var item in Model)
+            {
+                
+            <article class="brick entry" data-animate-el>
+
+                <div class="entry__thumb">
+                     <a asp-controller="Articles" asp-action="Details" asp-route-id="@item.Id" class="thumb-link">
+                        <img src="@item.ThumbUrl"
+                             srcset="@item.ThumbUrl 1x, @item.ImageUrl 2x" alt="">
+                    </a>
+                </div> <!-- end entry__thumb -->
+
+                <div class="entry__text">
+                    <div class="entry__header">
+                        <div class="entry__meta">
+                            <span class="cat-links">
+                                <a href="/Categories/Details/?@item.CategoryId">@item.Category.Name</a>
+                            </span>
+                            <span class="byline">
+                                By:
+                                <a href="/Users/Details/?@item.AuthorId">@item.User.Name</a>
+                            </span>
+                        </div>
+                            <h1 class="entry__title"><a asp-controller="Articles" asp-action="Details" asp-route-id="@item.Id">@item.Title</a></h1>
+                    </div>
+                    <div class="entry__excerpt">
+                        <p>
+                            @item.Description
+                        </p>
+                    </div>
+                        <a class="entry__more-link" asp-controller="Articles" asp-action="Details" asp-route-id="@item.Id">Read More</a>
+                </div> <!-- end entry__text -->
+
+            </article> <!-- end article -->
+            }
+
+
+        </div> <!-- end bricks-wrapper -->
+
+    </div> <!-- end masonry-->
+
+
+</div> <!-- end bricks -->

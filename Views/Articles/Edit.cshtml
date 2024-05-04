@@ -1,0 +1,131 @@
+﻿@model News.Models.Article
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "_Admin";
+}
+<style>
+    textarea {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+</style>
+<script src="/ckeditor/ckeditor.js"></script>
+<h1>Edit</h1>
+
+<h4>Article</h4>
+<hr />
+<form asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label asp-for="Title" class="control-label"></label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description" class="control-label"></label>
+        <input asp-for="Description" class="form-control" />
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Content" class="control-label"></label>
+        <textarea asp-for="Content" class="form-control" id="Content"></textarea>
+        <span asp-validation-for="Content" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="DateCreated" class="control-label"></label>
+        <input asp-for="DateCreated" class="form-control" />
+        <span asp-validation-for="DateCreated" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ImageUrl" class="control-label"></label>
+        <input asp-for="ImageUrl" class="form-control" />
+        <span asp-validation-for="ImageUrl" class="text-danger"></span>
+    </div>
+    @if (User.IsInRole("Administrator"))
+    {
+        <div class="form-group">
+            <label asp-for="AuthorId" class="control-label"></label>
+            <select asp-for="AuthorId" class="form-control" asp-items="ViewBag.AuthorId"></select>
+            <span asp-validation-for="AuthorId" class="text-danger"></span>
+        </div>
+    }
+    else
+    {
+        <div class="form-group">
+            <label asp-for="AuthorId" class="control-label"></label>
+            <input asp-for="AuthorId" class="form-control" type="text" readonly />
+            <span asp-validation-for="AuthorId" class="text-danger"></span>
+        </div>
+    }
+    <div class="form-group">
+        <label asp-for="CategoryId" class="control-label"></label>
+        <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+        <span asp-validation-for="CategoryId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="IsFeatured" class="control-label"></label>
+        <select asp-for="IsFeatured" class="form-control">
+            <option value="false" selected="@((bool)!Model.IsFeatured ? "selected" : null)">False</option>
+            <option value="true" selected="@((bool)Model.IsFeatured ? "selected" : null)">True</option>
+        </select>
+        <span asp-validation-for="IsFeatured" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ThumbUrl" class="control-label"></label>
+        <input asp-for="ThumbUrl" class="form-control" />
+        <span asp-validation-for="ThumbUrl" class="text-danger"></span>
+    </div>
+    @if (User.IsInRole("Administrator"))
+    {
+        <div class="form-group">
+            <label asp-for="IsCensored" class="control-label"></label>
+            <select asp-for="IsCensored" class="form-control">
+                <option value="1">True</option>
+                <option value="2">False</option>
+            </select>
+            <span asp-validation-for="IsCensored" class="text-danger"></span>
+        </div>
+    }
+    else
+    {
+        <div class="form-group">
+            <label asp-for="IsCensored" class="control-label"></label>
+            <input type="text" readonly asp-for="IsCensored" class="form-control" />
+            <span asp-validation-for="IsCensored" class="text-danger"></span>
+        </div>
+    }
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-primary" />
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#Content'), {
+                extraPlugins:[MyCustomUploadAdapterPlugin]
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        function MyCustomUploadAdapterPlugin(editor) {
+            editor.editing.view.change(writer => {
+                writer.setStyle(
+                    "color",
+                    "#000",
+                    editor.editing.view.document.getRoot()
+                );
+            });
+        }
+    </script>
+}
