@@ -30,7 +30,7 @@ namespace News.Models
         public bool? IsFeatured { get; set; }
         [DisplayName("Đường dẫn ảnh bé")]
         public string? ThumbUrl { get; set; }
-        [DisplayName("Đã kiểm duyệt")]
+        [DisplayName("Trạng thái")]
         public int? IsCensored { get; set; }
         public Article()
         {

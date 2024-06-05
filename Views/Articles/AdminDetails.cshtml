@@ -39,7 +39,7 @@
             @Html.DisplayNameFor(model => model.ImageUrl)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ImageUrl)
+            <img src="@Model.ImageUrl" alt="Image url" style="max-width: 200px; max-height: 100px;" />
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.User)
@@ -63,7 +63,7 @@
             @Html.DisplayNameFor(model => model.ThumbUrl)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ThumbUrl)
+            <img src="@Model.ThumbUrl" alt="Thumb url" style="max-width: 200px; max-height: 100px;" />
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.IsCensored)

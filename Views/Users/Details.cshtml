@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Details";
+    Layout = "_Admin";
 }
 
 <h1>Details</h1>
@@ -38,7 +39,7 @@
             @Html.DisplayNameFor(model => model.AvatarUrl)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AvatarUrl)
+            <img src="@Model.AvatarUrl" alt="User Avatar" style="max-width: 100px; max-height: 100px;" />
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Introduce)

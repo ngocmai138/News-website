@@ -88,6 +88,7 @@ namespace News.Controllers
         [Authorize(Roles = "Administrator")]
         public IActionResult Create()
         {
+            ViewBag.Roles = new SelectList(new List<string> { "Administrator", "Author", "User" });
             return View();
         }
 
@@ -104,6 +105,7 @@ namespace News.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.Roles = new SelectList(new List<string> { "Administrator", "Author", "User" });
             return View(user);
         }
 

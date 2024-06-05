@@ -51,6 +51,14 @@ namespace News.Controllers
             else
             {
                 var newsContext = _context.Article.Include(a => a.Category).Include(a => a.User).Where(a => a.CategoryId ==  id);
+                var claimsIdentity = HttpContext.User.Identity as ClaimsIdentity;
+                var roleClaim = claimsIdentity.FindFirst(ClaimTypes.Role);
+                if (roleClaim != null && roleClaim.Value == "Administrator")
+                {
+
+                    return View("AdminDetails", await newsContext.ToListAsync());
+                }
+                else
                 return View("Details", await newsContext.ToListAsync());
             }
         }

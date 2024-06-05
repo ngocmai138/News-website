@@ -52,23 +52,34 @@
                 <span class="menu-title">Quản lý tin tức</span>
             </a>
         </li>
-        <li class="nav-item menu-items">
-            <a class="nav-link" href="/Categories">
-                <span class="menu-icon">
-                    <i class="mdi mdi-playlist-play"></i>
-                </span>
-                <span class="menu-title">Quản lý danh mục</span>
-            </a>
-        </li>
+         @if (User.IsInRole("Administrator"))
+        {
+            <li class="nav-item menu-items">
+                <a class="nav-link" href="/Categories">
+                    <span class="menu-icon">
+                        <i class="mdi mdi-playlist-play"></i>
+                    </span>
+                    <span class="menu-title">Quản lý danh mục</span>
+                </a>
+            </li>
 
-        <li class="nav-item menu-items">
-            <a class="nav-link" href="/Users" >
+            <li class="nav-item menu-items">
+                <a class="nav-link" href="/Users" >
+                    <span class="menu-icon">
+                        <i class="mdi mdi-contacts"></i>
+                    </span>
+                    <span class="menu-title">Quản lý người dùng</span>
+                </a>
+            </li>
+
+            <li class="nav-item menu-items">
+                <a class="nav-link" href="/Subscriptions">
                 <span class="menu-icon">
                     <i class="mdi mdi-contacts"></i>
                 </span>
-                <span class="menu-title">Quản lý người dùng</span>
+                <span class="menu-title">Quản lý người theo dõi</span>
             </a>
         </li>
-
+        }
     </ul>
 </nav>

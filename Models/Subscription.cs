@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace News.Models
 {
@@ -7,6 +8,7 @@ namespace News.Models
         [Key]
         public int Id {  get; set; }
         public string? Email {  get; set; }
+        [DisplayName("Ngày đăng ký")]
         public DateOnly DateSubscribed { get; set; }
     }
 }
